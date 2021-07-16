@@ -10,7 +10,7 @@ services:
       - mysql_data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_USER: tminas
+      MYSQL_USER: root
       MYSQL_PASSWORD: password
       MYSQL_DATABASE: db_pet
     ports:

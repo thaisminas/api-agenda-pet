@@ -1,5 +1,5 @@
 //Controllers responsavel pelas rotas
-const atendimentos = require("../models/atendimentos");
+const Atendimento = require("../models/atendimentos");
 
 module.exports = app => {
     app.get('/atendimentos', (req, res) => res.send('Você está na rota de atendimentos'));
@@ -7,7 +7,7 @@ module.exports = app => {
     app.post('/atendimentos', (req, res) => {
         const atendimento = req.body;
 
-        atendimento.adiciona(atendimento);
-        res.send('Você está na rota de atendimentos');
+        Atendimento.adiciona(atendimento)
+        res.send('Post atendimento');
     });
 }
