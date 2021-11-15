@@ -1,26 +1,30 @@
 //Controllers responsavel pelas rotas
-const atendimentos = require("../models/atendimentos");
 const Atendimento = require("../models/atendimentos");
 
 module.exports = app => {
     app.get('/atendimentos', (req, res) => {
-        atendimento.lista(res)
+        atendimento.lista()
+            .then(resultados => res.status(200).json(resultados))
+            .catch(erros => res.status(400).json(erros))
     });
 
     app.get('/atendimentos/:id', (req, res) =>{
         const id = parseInt(req.params.id)
 
         Atendimento.buscaPorId(id, res)
-        res.send('OK')
     })
 
     app.post('/atendimentos', (req, res) => {
         const atendimento = req.body;
 
-        Atendimento.adiciona(atendimento, res)
+        Atendimento.adiciona(atendimento)
+            .then(atendimentoCadastrado => 
+                res.status(201).json(atendimentoCadastrado)
+            )
+            .catch(erros => res.status(400).json(erros))
     })
 
-    app.patch('atendimento/:id', (req, res) =>{
+    app.patch('atendimentos/:id', (req, res) =>{
         const id = parseInt(req.params.id)
         const valores = req.body
 
